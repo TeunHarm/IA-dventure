@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Kirby-dream-land-theme-song.mp3-c131a0ec392f5a1b2898d1006e8fc018.mp3str"
+
+[deps]
+
+source_file="res://Audio/Kirby-dream-land-theme-song.mp3"
+dest_files=[ "res://.import/Kirby-dream-land-theme-song.mp3-c131a0ec392f5a1b2898d1006e8fc018.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

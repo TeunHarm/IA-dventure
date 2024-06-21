@@ -1,0 +1,265 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Scripts/Game.cs" type="Script" id=1]
+[ext_resource path="res://Scenes/Master_scene.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Audio/Kirby-dream-land-theme-song.mp3" type="AudioStream" id=3]
+[ext_resource path="res://UI/Visu/Visu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Pictures/cnul.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/ObjectiveDisplay.cs" type="Script" id=6]
+[ext_resource path="res://Scripts/HealthBar.cs" type="Script" id=7]
+[ext_resource path="res://Objets/Cestlafleche.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Objets/TimeDisplay.tscn" type="PackedScene" id=9]
+[ext_resource path="res://dialogues/Dialogue.tscn" type="PackedScene" id=10]
+[ext_resource path="res://NEAT_usability/fonts/dynamics/roboto-black.tres" type="DynamicFont" id=11]
+[ext_resource path="res://UI/Visu/visu-bold.tres" type="DynamicFont" id=12]
+[ext_resource path="res://Scripts/DeathMenutest.cs" type="Script" id=13]
+[ext_resource path="res://Scripts/PauseMenu.cs" type="Script" id=14]
+[ext_resource path="res://NEAT_usability/fonts/dynamics/roboto-bold.tres" type="DynamicFont" id=15]
+
+[node name="Jeu" type="Node"]
+script = ExtResource( 1 )
+
+[node name="BG" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.141176, 0.141176, 0.141176, 1 )
+
+[node name="Base" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Split" type="HSplitContainer" parent="Base"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+dragger_visibility = 1
+
+[node name="ViewportContainer2" type="ViewportContainer" parent="Base/Split"]
+light_mask = 15
+margin_right = 506.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 480, 540 )
+size_flags_horizontal = 3
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="Base/Split/ViewportContainer2"]
+size = Vector2( 506, 600 )
+size_override_stretch = true
+handle_input_locally = false
+hdr = false
+usage = 0
+render_target_update_mode = 3
+
+[node name="AiMaster" parent="Base/Split/ViewportContainer2/Viewport" instance=ExtResource( 2 )]
+Type = "AI"
+
+[node name="Cestlafleche" parent="Base/Split/ViewportContainer2" instance=ExtResource( 8 )]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_top = 40.0
+PlayerGroup = "AI"
+
+[node name="ObjectiveDisplay" type="RichTextLabel" parent="Base/Split/ViewportContainer2"]
+anchor_right = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = 20.0
+text = "Text"
+script = ExtResource( 6 )
+PlayerGroup = "AI"
+
+[node name="AIHealth" type="Control" parent="Base/Split/ViewportContainer2"]
+margin_left = 15.0
+margin_top = 40.0
+script = ExtResource( 7 )
+isAi = true
+
+[node name="Dialogue" parent="Base/Split/ViewportContainer2" instance=ExtResource( 10 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_top = -50.0
+margin_bottom = -50.0
+d_file = ""
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Base/Split/ViewportContainer2"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = -30.0
+margin_right = 50.0
+margin_bottom = -10.0
+custom_fonts/normal_font = ExtResource( 11 )
+text = "IA"
+scroll_active = false
+
+[node name="ViewportContainer" type="ViewportContainer" parent="Base/Split"]
+margin_left = 518.0
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 480, 540 )
+size_flags_horizontal = 3
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="Base/Split/ViewportContainer"]
+size = Vector2( 506, 600 )
+size_override_stretch = true
+handle_input_locally = false
+hdr = false
+usage = 0
+render_target_update_mode = 3
+
+[node name="Master" parent="Base/Split/ViewportContainer/Viewport" instance=ExtResource( 2 )]
+
+[node name="Cestlafleche" parent="Base/Split/ViewportContainer" instance=ExtResource( 8 )]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_top = 40.0
+
+[node name="ObjectiveDisplay2" type="RichTextLabel" parent="Base/Split/ViewportContainer"]
+anchor_right = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = 20.0
+text = "Text"
+script = ExtResource( 6 )
+
+[node name="PlayerHealth" type="Control" parent="Base/Split/ViewportContainer"]
+margin_left = 15.0
+margin_top = 40.0
+script = ExtResource( 7 )
+
+[node name="Dialogue" parent="Base/Split/ViewportContainer" instance=ExtResource( 10 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_top = -50.0
+margin_bottom = -50.0
+d_file = ""
+
+[node name="Visu" parent="Base/Split/ViewportContainer" instance=ExtResource( 4 )]
+visible = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Base/Split/ViewportContainer"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = -30.0
+margin_right = 100.0
+margin_bottom = -10.0
+custom_fonts/normal_font = ExtResource( 11 )
+text = "Joueur
+"
+scroll_active = false
+
+[node name="TimeDisplay" parent="Base" instance=ExtResource( 9 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -30.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = 20.0
+text = "x1"
+scroll_active = false
+
+[node name="PauseMenu" type="Control" parent="Base"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 14 )
+
+[node name="TextureRect" type="TextureRect" parent="Base/PauseMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 7
+
+[node name="BackButton" type="Button" parent="Base/PauseMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -70.0
+margin_top = -50.0
+margin_right = 70.0
+margin_bottom = -10.0
+custom_fonts/font = ExtResource( 12 )
+text = "Reprendre"
+
+[node name="QuitButton" type="Button" parent="Base/PauseMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -70.0
+margin_top = 10.0
+margin_right = 70.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 12 )
+text = "Quitter"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Base/PauseMenu"]
+anchor_left = 0.5
+anchor_top = 0.2
+anchor_right = 0.5
+anchor_bottom = 0.2
+margin_left = -200.0
+margin_top = -30.0
+margin_right = 200.0
+margin_bottom = 30.0
+custom_fonts/normal_font = ExtResource( 15 )
+bbcode_enabled = true
+bbcode_text = "[center]Pause[/center]"
+text = "Pause"
+
+[node name="DeathMenu" type="Control" parent="Base"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 13 )
+
+[node name="TextureRect" type="TextureRect" parent="Base/DeathMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 7
+
+[node name="RespawnButton" type="Button" parent="Base/DeathMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -70.0
+margin_top = -20.0
+margin_right = 70.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 12 )
+text = "Réapparaître"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Base/DeathMenu"]
+anchor_left = 0.5
+anchor_top = 0.2
+anchor_right = 0.5
+anchor_bottom = 0.2
+margin_left = -200.0
+margin_top = -30.0
+margin_right = 200.0
+margin_bottom = 30.0
+custom_fonts/normal_font = ExtResource( 15 )
+bbcode_enabled = true
+bbcode_text = "[center]Vous êtes mort[/center]"
+text = "Vous êtes mort"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="Enemy" type="AudioStreamPlayer" parent="."]
+
+[connection signal="pressed" from="Base/PauseMenu/BackButton" to="Base/PauseMenu" method="_on_BackButton_pressed"]
+[connection signal="pressed" from="Base/PauseMenu/QuitButton" to="Base/PauseMenu" method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="Base/DeathMenu/RespawnButton" to="Base/DeathMenu" method="_on_RespawnButton_pressed"]

@@ -1,0 +1,123 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/Angel.cs" type="Script" id=1]
+[ext_resource path="res://Arts/Castle/Boss/Sprite_Angel.tres" type="SpriteFrames" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 17, 11.5 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 220.009
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 15.5, 9.125 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 13.2969, 13.75 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 8.5, 25.25 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 37, 8.25 )
+
+[node name="KinematicBody2D" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 1.60938, 1.60938 )
+frames = ExtResource( 2 )
+animation = "AttackDown"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, -6.5 )
+shape = SubResource( 1 )
+
+[node name="Detection_area" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_area"]
+shape = SubResource( 2 )
+
+[node name="AttackDownDetector" type="Area2D" parent="."]
+visible = false
+position = Vector2( 0, 10 )
+
+[node name="CollisionShapeADown" type="CollisionShape2D" parent="AttackDownDetector"]
+visible = false
+position = Vector2( 0, -7 )
+shape = SubResource( 3 )
+
+[node name="AttackUpDetector" type="Area2D" parent="."]
+visible = false
+position = Vector2( -3, -5 )
+
+[node name="CollisionShapeAUp" type="CollisionShape2D" parent="AttackUpDetector"]
+visible = false
+position = Vector2( 2.5, -13.875 )
+shape = SubResource( 3 )
+
+[node name="AttackRightDetector" type="Area2D" parent="."]
+visible = false
+position = Vector2( 12, 1 )
+
+[node name="CollisionShapeARight" type="CollisionShape2D" parent="AttackRightDetector"]
+visible = false
+position = Vector2( 3, -7 )
+shape = SubResource( 4 )
+
+[node name="AttackLeftDetector" type="Area2D" parent="."]
+visible = false
+position = Vector2( 12, 1 )
+
+[node name="CollisionShapeALeft" type="CollisionShape2D" parent="AttackLeftDetector"]
+position = Vector2( -28.4063, -7.25 )
+shape = SubResource( 4 )
+
+[node name="AttackDown" type="Area2D" parent="."]
+position = Vector2( 0, 10 )
+
+[node name="CollisionShapeADown2" type="CollisionShape2D" parent="AttackDown"]
+position = Vector2( 0, 12 )
+shape = SubResource( 5 )
+
+[node name="AttackUp" type="Area2D" parent="."]
+position = Vector2( -3, -5 )
+
+[node name="CollisionShapeAUp2" type="CollisionShape2D" parent="AttackUp"]
+position = Vector2( 4, -30 )
+shape = SubResource( 5 )
+
+[node name="AttackRight" type="Area2D" parent="."]
+position = Vector2( 12, 1 )
+
+[node name="CollisionShapeARight2" type="CollisionShape2D" parent="AttackRight"]
+position = Vector2( 33, -7.75 )
+shape = SubResource( 6 )
+
+[node name="AttackLeft" type="Area2D" parent="."]
+position = Vector2( 12, 1 )
+
+[node name="CollisionShapeALeft2" type="CollisionShape2D" parent="AttackLeft"]
+position = Vector2( -57, -8 )
+shape = SubResource( 6 )
+
+[connection signal="body_entered" from="Detection_area" to="." method="_on_Detection_area_body_entered"]
+[connection signal="body_exited" from="Detection_area" to="." method="_on_Detection_area_body_exited"]
+[connection signal="body_entered" from="AttackDownDetector" to="." method="_on_AttackDown_body_entered"]
+[connection signal="body_exited" from="AttackDownDetector" to="." method="_on_AttackDownDetector_body_exited"]
+[connection signal="body_entered" from="AttackUpDetector" to="." method="_on_AttackUp_body_entered"]
+[connection signal="body_exited" from="AttackUpDetector" to="." method="_on_AttackUp_body_exited"]
+[connection signal="body_entered" from="AttackRightDetector" to="." method="_on_AttackRightDetector_body_entered"]
+[connection signal="body_exited" from="AttackRightDetector" to="." method="_on_AttackRightDetector_body_exited"]
+[connection signal="body_entered" from="AttackLeftDetector" to="." method="_on_AttackLeftDetector_body_entered"]
+[connection signal="body_exited" from="AttackLeftDetector" to="." method="_on_AttackLeftDetector_body_exited"]
+[connection signal="body_entered" from="AttackDown" to="." method="_on_AttackDown_body_entered"]
+[connection signal="body_exited" from="AttackDown" to="." method="_on_AttackDown_body_exited"]
+[connection signal="body_entered" from="AttackUp" to="." method="_on_AttackUp_body_entered"]
+[connection signal="body_exited" from="AttackUp" to="." method="_on_AttackUp_body_exited"]
+[connection signal="body_entered" from="AttackRight" to="." method="_on_AttackRight_body_entered"]
+[connection signal="body_exited" from="AttackRight" to="." method="_on_AttackRight_body_exited"]
+[connection signal="body_entered" from="AttackLeft" to="." method="_on_AttackLeft_body_entered"]
+[connection signal="body_exited" from="AttackLeft" to="." method="_on_AttackLeft_body_exited"]

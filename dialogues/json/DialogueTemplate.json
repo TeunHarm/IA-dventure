@@ -1,0 +1,8 @@
+[
+	{"name": "The speaker Name", "text": "Your epic dialogue"},
+	{"name": "", "text": ""}
+
+	Delete this text
+	Then Save this file in res://dialogue/json/
+	then create a sign, in dialogue path, put the name of the new json file minus ".json"
+]

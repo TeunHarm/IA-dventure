@@ -1,0 +1,9 @@
+.mono
+.idea
+.vs
+.vscode
+
+TOKEN_ID.txt
+
+__pycache__/
+*.py[cod]
